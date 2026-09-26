@@ -162,10 +162,10 @@
 
   /* Continuous soundtrack memory: song + position survive page changes. */
   var tracks = [
-    { id: "cosmic", title: "Cosmic Love", artist: "Florence + the Machine", src: "assets/music/cosmic-love.mp3" },
-    { id: "exception", title: "The Only Exception", artist: "Paramore", src: "assets/music/only-exception.mp3" },
-    { id: "opera", title: "Opera House", artist: "Your cover", src: "assets/music/opera-house.mp3" },
-    { id: "video", title: "Video Games", artist: "Lana Del Rey", src: "assets/music/video-games.mp3" }
+    { id: "cosmic", title: "Cosmic Love", artist: "Florence + the Machine", src: "cosmic-love.mp3" },
+    { id: "exception", title: "The Only Exception", artist: "Paramore", src: "only-exception.mp3" },
+    { id: "opera", title: "Opera House", artist: "Your cover", src: "opera-house.mp3" },
+    { id: "video", title: "Video Games", artist: "Lana Del Rey", src: "video-games.mp3" }
   ];
   var savedTrack = localStorage.getItem("ourFirstYearTrack") || "cosmic";
   var savedTime = parseFloat(localStorage.getItem("ourFirstYearTime") || "0");

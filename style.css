@@ -858,3 +858,138 @@ body[data-theme="chapter12"] { background-image: radial-gradient(circle at 20% 1
 body[data-theme="ending"] { background-image: radial-gradient(circle at 50% 10%, rgba(100,150,240,.18), transparent 40%), radial-gradient(circle at 50% 90%, rgba(80,100,210,.15), transparent 40%); }
 body[data-theme="ending"] .page-decor { animation: endingGlow 5s ease-in-out infinite alternate; }
 @keyframes endingGlow { from { opacity: .65; } to { opacity: 1; } }
+
+/* ===== FINAL MOBILE REFINEMENT ===== */
+@media (max-width: 520px) {
+  body {
+    padding: 8px;
+  }
+
+  .cover,
+  .prologue-page {
+    min-height: calc(100svh - 16px);
+  }
+
+  .cover-content {
+    padding: 30px 18px 112px;
+  }
+
+  .cover h1 {
+    font-size: clamp(3rem, 12vw, 4.6rem);
+    line-height: .94;
+  }
+
+  .tagline {
+    margin-top: 38px;
+    font-size: clamp(1.15rem, 5vw, 1.55rem);
+    line-height: 1.55;
+  }
+
+  .sparkle {
+    padding-top: 24px;
+    font-size: 2.7rem;
+  }
+
+  .dedication {
+    margin-top: 42px;
+  }
+
+  .for {
+    font-size: clamp(2.1rem, 8vw, 3rem);
+  }
+
+  .byline {
+    margin-top: 18px;
+    font-size: .68rem;
+    letter-spacing: .16em;
+  }
+
+  .open-button {
+    width: min(100%, 330px);
+    min-height: 58px;
+    margin-top: 42px;
+    padding: 14px 16px;
+    font-size: .82rem;
+    letter-spacing: .16em;
+  }
+
+  .prologue-content {
+    max-width: 620px;
+    padding: 34px 20px 118px;
+  }
+
+  .prologue-content h1,
+  .chapter-title {
+    font-size: clamp(2.05rem, 8.2vw, 3.35rem);
+    line-height: 1.02;
+  }
+
+  .page-label {
+    font-size: .64rem;
+    letter-spacing: .2em;
+  }
+
+  .letter {
+    font-size: clamp(.98rem, 3.9vw, 1.08rem);
+    line-height: 1.78;
+  }
+
+  .letter p {
+    margin-bottom: 1.15em;
+  }
+
+  .page-navigation {
+    margin-top: 28px;
+    gap: 9px;
+  }
+
+  .nav-button {
+    width: min(100%, 300px);
+    min-height: 46px;
+    padding: 10px 13px;
+    font-size: .66rem;
+  }
+
+  .nav-secondary {
+    min-height: 38px;
+  }
+
+  .music-player {
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    max-width: none;
+    grid-template-columns: 25px minmax(0, 1fr) 28px 36px 28px;
+    gap: 5px;
+    padding: 7px 8px;
+    border-radius: 15px;
+  }
+
+  .music-note {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+  }
+
+  .music-kicker {
+    font-size: .44rem;
+  }
+
+  .music-title {
+    font-size: .68rem;
+  }
+
+  .music-artist {
+    font-size: .5rem;
+  }
+
+  .music-player button {
+    width: 27px;
+    height: 27px;
+  }
+
+  .music-play {
+    width: 34px !important;
+    height: 34px !important;
+  }
+}
