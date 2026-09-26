@@ -32,13 +32,13 @@
   var stars = document.createElement("div");
   stars.className = "star-field";
   stars.setAttribute("aria-hidden", "true");
-  for (var i = 0; i < 42; i++) {
+  for (var i = 0; i < 72; i++) {
     var star = document.createElement("i");
     star.className = "star";
     star.style.setProperty("--x", Math.random() * 100 + "%");
     star.style.setProperty("--y", Math.random() * 100 + "%");
-    star.style.setProperty("--s", (Math.random() * 2 + 1) + "px");
-    star.style.setProperty("--d", (Math.random() * 5 + 4) + "s");
+    star.style.setProperty("--s", (Math.random() * 2.6 + 1) + "px");
+    star.style.setProperty("--d", (Math.random() * 5 + 3) + "s");
     star.style.setProperty("--delay", (Math.random() * -8) + "s");
     stars.appendChild(star);
   }
@@ -48,7 +48,7 @@
   decor.className = "page-decor";
   decor.setAttribute("aria-hidden", "true");
   var decorSets = {
-    cover: ["✦", "✧", "⋆", "♡", "✦", "·", "✧", "⋆", "♡", "✦", "·", "✧"],
+    cover: ["✦", "✧", "⋆", "♡", "✦", "·", "✧", "⋆", "♡", "✦", "·", "✧", "✦", "⋆", "♡", "✧", "·", "✦"],
     prologue: ["♡", "✦", "♡", "✧", "⋆", "♡", "✦", "·", "♡", "✧"],
     chapter1: ["✦", "⋆", "✧", "·", "✦", "⋆", "✧", "✦", "⋆", "·", "✧", "✦"],
     chapter2: ["♡", "♡", "✧", "♡", "✦", "♡", "·", "♡", "✧", "♡", "✦", "♡"],
@@ -61,15 +61,22 @@
     chapter9: ["✦", "·", "⋆", "☾", "·", "✧", "⋆", "·", "✦", "☾", "✧", "⋆"],
     chapter10: ["✦", "▣", "✧", "•", "▣", "⋆", "✦", "•", "✧", "▣", "✦", "•"],
     chapter11: ["·", "✧", "⋆", "☾", "·", "✦", "⋆", "·", "✧", "☾", "⋆", "·"],
-    chapter12: ["✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧"],
-    ending: ["✦", "♡", "✧", "✦", "♡", "✧", "⋆", "♡", "✦", "♡", "✧", "⋆"]
+    chapter12: ["✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧", "✦", "♡", "✧"],
+    ending: ["✦", "♡", "✧", "✦", "♡", "✧", "⋆", "♡", "✦", "♡", "✧", "⋆", "✦", "♡", "✧", "🎉", "✦", "♡"]
   };
   var symbols = decorSets[body.dataset.theme] || decorSets.cover;
+  var decorPositions = [
+    [6,8],[92,13],[5,25],[94,34],[7,45],[91,53],[4,66],[95,76],[9,88],[87,91],[2,58],[97,6],[15,18],[84,25],[12,76],[82,66],[18,94],[76,9]
+  ];
   symbols.forEach(function (symbol, index) {
     var d = document.createElement("span");
     d.textContent = symbol;
     d.className = "decor-item decor-" + index;
     d.style.setProperty("--i", index);
+    var pos = decorPositions[index % decorPositions.length];
+    d.style.left = pos[0] + "%";
+    d.style.top = pos[1] + "%";
+    d.style.setProperty("--size", (14 + (index % 4) * 4) + "px");
     decor.appendChild(d);
   });
   var targetPage = document.querySelector(".cover, .prologue-page");
@@ -171,6 +178,28 @@
   var savedTime = parseFloat(localStorage.getItem("ourFirstYearTime") || "0");
   var savedPlaying = localStorage.getItem("ourFirstYearPlaying") === "1";
   var current = tracks.find(function (t) { return t.id === savedTrack; }) || tracks[0];
+
+  /* Anniversary confetti on the final page */
+  if (body.dataset.theme === "ending") {
+    var confetti = document.createElement("div");
+    confetti.className = "confetti-layer";
+    confetti.setAttribute("aria-hidden", "true");
+    var confettiColors = ["#8fb9ff", "#d9e8ff", "#b98cff", "#79dcff", "#ff9fca", "#ffd36e", "#ffffff"];
+    for (var c = 0; c < 55; c++) {
+      var piece = document.createElement("span");
+      piece.className = "confetti";
+      piece.style.setProperty("--x", Math.random() * 100 + "%");
+      piece.style.setProperty("--w", (Math.random() * 5 + 4) + "px");
+      piece.style.setProperty("--h", (Math.random() * 9 + 5) + "px");
+      piece.style.setProperty("--r", (Math.random() * 180 - 90) + "deg");
+      piece.style.setProperty("--drift", (Math.random() * 160 - 80) + "px");
+      piece.style.setProperty("--dur", (Math.random() * 7 + 7) + "s");
+      piece.style.setProperty("--delay", (Math.random() * -12) + "s");
+      piece.style.setProperty("--c", confettiColors[c % confettiColors.length]);
+      confetti.appendChild(piece);
+    }
+    body.appendChild(confetti);
+  }
 
   var music = document.createElement("aside");
   music.className = "music-player";
